@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./InputField.css";
 
 interface Props {
@@ -7,10 +7,17 @@ interface Props {
   handleAdd: (e:React.FormEvent) => void;
 }
 const InputField = ({ todo, setTodo,handleAdd }: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <div>
-      <form className="input" onSubmit={handleAdd}>
+      <form className="input" onSubmit={(e) =>{
+        handleAdd(e);
+        inputRef.current?.blur(); // remove focus from input field
+      } 
+      }>
         <input
+          ref={inputRef}
           type="text"
           value={todo}
           onChange={(e)=> setTodo(e.target.value)}
