@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Todolist.css"
+import "./todolist.css"
 import { Todo } from '../../model'
 import SingleTodo from './SingleTodo';
 
