@@ -23,15 +23,18 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
     setEdit(false);
   };
 
-  const handleDone = (id: number) => {
-    setTodos(todos.map((todo) => 
-      todo.id === id ? {...todo, isDone: !todo.isDone} : todo
-    ));
-  };
+  const handleDone = (id:number)=>{
+    // which id is matched with the parameter passed id in todos list give isDone property true
+    setTodos(todos.map((todo)=>todo.id === id ? {
+      ...todo,
+      isDone: !todo.isDone
+    }:todo))
+  }
 
-  const handleDelete = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const handleDelete = (id:number)=>{
+    // filter out the todo which is not matched with the parameter passed id
+    setTodos(todos.filter((todo)=>todo.id !== id))
+  }
 
   return (
     <form className='todos_single' onSubmit={(e) => handleEdit(e, todo.id)}>
@@ -40,7 +43,7 @@ const SingleTodo = ({todo, todos, setTodos}: Props) => {
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
           className="todos_single_text"
-          autoFocus
+          
         />
       ) : todo.isDone ? (
         <s className='todos_single_text'>{todo.todo}</s> 
